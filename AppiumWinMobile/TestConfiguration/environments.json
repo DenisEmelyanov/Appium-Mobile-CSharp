@@ -1,0 +1,10 @@
+﻿{
+  "env name1": {
+    "service URL": "service url1",
+    "SMMC URL": "smmc url1"
+  },
+  "env name2": {
+    "service URL": "service url2",
+    "SMMC URL": "smmc url2"
+  }
+}
