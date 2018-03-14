@@ -13,7 +13,7 @@ namespace AppiumWinMobile.Logging
         {
             _stepNumber++;
             //TODO
-            System.Diagnostics.Debug.WriteLine($"Step {_stepNumber}: {string.Format(text, args)}");
+            //System.Diagnostics.Debug.WriteLine($"Step {_stepNumber}: {string.Format(text, args)}");
         }
 
         public static void ResetStepNumber()
