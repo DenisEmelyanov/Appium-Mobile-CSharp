@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -87,16 +87,22 @@ namespace AppiumWinMobile.TestConfiguration
             {
                 TestLog.Write($"HOSTS DEBUG: {machineName}");
                 string envName = _hosts[machineName].EnvName;
-                //get HWS url from json
+                //get URLs from json
                 using (StreamReader file = File.OpenText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestConfiguration", "environments.json")))
                 using (JsonTextReader reader = new JsonTextReader(file))
                 {
                     JObject o = (JObject)JToken.ReadFrom(reader);
+                    
+                    var query = from env in (JArray)o["environments"]
+                                where ((string)env["alias"]).Equals(envName)
+                                select new { ServiceURL = env["service URL"], SMMCURL = env["SMMC URL"] };
 
-                    if (o[envName] != null)
-                        _hwsUrl = (string)o[(envName)]["service URL"];
+                    if (query.Any())
+                        _hwsUrl = (string)query.First().ServiceURL;
+                    //if (o[envName] != null)
+                    //    _hwsUrl = (string)o[(envName)]["service URL"];
                     else
-                        throw new Exception($"Cannot find '{envName}' in environments.json");
+                        throw new Exception($"Cannot find '{envName}' alias in environments.json");
                 }
 
                 return _hosts[machineName];
