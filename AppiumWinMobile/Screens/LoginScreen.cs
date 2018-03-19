@@ -1,5 +1,6 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,11 @@ namespace AppiumWinMobile.Screens
             WaitForNoOverlay();
         }
 
-        [FindsBy(How = How.Id, Using = "LoginUsername")]
+        [FindsBySequence]
+        [MobileFindsBySequence(Android = true, IOS = true)]
+        [FindsBy(How = How.Id, Using = "LoginUsername", Priority = 1)]
+        [FindsByAndroidUIAutomator(Accessibility = "LoginUsername", Priority = 2)]
+        [FindsByIOSUIAutomation(Accessibility = "LoginUsername", Priority = 3)]
         private IWebElement LoginField { get; set; }
 
         [FindsBy(How = How.Id, Using = "LoginPassword")]
