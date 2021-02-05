@@ -11,6 +11,7 @@ namespace AppiumWinMobile
         static void Main(string[] args)
         {
             Console.WriteLine(args.Length);
+            //git test
         }
     }
 }
