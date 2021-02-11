@@ -12,7 +12,7 @@ namespace AppiumWinMobile.Tests
     public class LoginTests : TestBase
     {
         [TestCase(Author = "Denis Emelyanov")]
-        [Category("Endpoints")]
+        [Category("Endpoints")]//TEST
         public void LoginWithCustomEndpointTest()
         {
             EulaScreen eulaScreen = new EulaScreen(Driver);
